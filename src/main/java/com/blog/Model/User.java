@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,8 @@ import java.util.Collection;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "correo"))
+@Builder
+@Table(name = "usuarios", uniqueConstraints = { @UniqueConstraint(columnNames = "correo"), @UniqueConstraint(columnNames = "nombre_usuario") })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +33,6 @@ public class User {
     private String email;
     @Column(name = "contraseña")
     @NotBlank
-    @Size(min = 8, max = 20)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -41,4 +42,5 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "rol_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
 }
