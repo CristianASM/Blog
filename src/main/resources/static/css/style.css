@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(37, 37, 37);
+    color: #ffffff;
+}
+.color-nav, .nav-link{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+}
+.nav-link:hover{
+    color: blueviolet;
+}
+.navbar-toggler{
+    color: #ffffff;
+    background-color: rgb(24, 147, 255);
+}
+@media(min-width:768px){
+    .in{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .collapse{
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+}
+.mr-1{
+    margin-right: 10px;
+}
+.form-login{
+    width: 400px;
+}

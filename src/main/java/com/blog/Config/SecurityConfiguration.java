@@ -39,7 +39,8 @@ public class SecurityConfiguration {
                             "/registration**",
                             "/js/**",
                             "/css/**",
-                            "/img/**").permitAll();
+                            "/img/**",
+                            "/").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(login -> login.loginPage("/login").permitAll())
