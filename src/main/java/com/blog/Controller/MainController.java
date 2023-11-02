@@ -1,6 +1,7 @@
 package com.blog.Controller;
 
 import com.blog.Model.User;
+import com.blog.Service.Impl.PostServiceImpl;
 import com.blog.Service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,11 @@ import java.security.Principal;
 @Controller
 public class MainController {
     private final UserServiceImpl userService;
+    private final PostServiceImpl postService;
     @Autowired
-    public MainController(UserServiceImpl userService) {
+    public MainController(UserServiceImpl userService, PostServiceImpl postService) {
         this.userService = userService;
+        this.postService = postService;
     }
 
     @GetMapping("/login")
@@ -29,6 +32,7 @@ public class MainController {
             String userName = user.getUserName();
             model.addAttribute("userName", userName);
         }
+        model.addAttribute("posts", postService.getAllPost());
         return "index";
     }
 }
