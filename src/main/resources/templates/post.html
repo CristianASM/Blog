@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-md color-nav rounded-3 rounded-top-0">
+    <div class="container-fluid">
+      <a href="index.html"><img class="Logo" src="" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Crear</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categorias</a>
+          </li>
+        </ul>
+        <div class="in">
+          <div th:if="${#authorization.expression('isAuthenticated()')}" class="d-flex align-items-center">
+            <p class="mb-0">Bienvenido, <span class="mr-1" th:text="${#authentication.name}"></span></p>
+            <a th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
+          </div>
+          <div th:unless="${#authorization.expression('isAuthenticated()')}">
+            <a th:href="@{/login}" class="btn btn-primary mr-1">Ingresar</a>
+            <a th:href="@{/registration}" class="btn btn-primary">Registro</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<article class="container mt-5">
+  <form method="post" th:object="${newPost}" th:action="@{/posts/post}">
+    <div class="form-group">
+      <label class="control-label" for="title">Título:</label>
+      <input id="title" name="title" class="form-control" th:field="*{title}" autofocus="autofocus" placeholder="Encabezado" required/>
+
+      <label class="control-label mt-2" for="body">Texto:</label>
+      <textarea name="body" id="body" class="form-control" th:field="*{body}" autofocus="autofocus" placeholder="Cuerpo" required></textarea>
+
+      <input type="submit" name="post-submit" id="post-submit"
+             class="form-control btn btn-primary mt-4" value="Publicar" />
+    </div>
+  </form>
+</article>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
