@@ -28,7 +28,7 @@ public class User {
     private String email;
     @Column(name = "contraseña")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "roles_usuarios",
             joinColumns = @JoinColumn(
