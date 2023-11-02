@@ -19,20 +19,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nombre", length = 45)
-    @NotBlank
     private String firstName;
     @Column(name = "apellido", length = 45)
-    @NotBlank
     private String lastName;
     @Column(name = "nombre_usuario")
-    @NotBlank
-    @Size(min = 4, max = 20)
     private String userName;
     @Column(name = "correo", length = 45)
-    @NotBlank
     private String email;
     @Column(name = "contraseña")
-    @NotBlank
     private String password;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

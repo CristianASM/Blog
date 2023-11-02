@@ -5,6 +5,8 @@ import com.blog.Service.Impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +29,10 @@ public class UserRegistrationController {
         return "registration";
     }
     @PostMapping
-    public String registerUser(@Valid @ModelAttribute("user") UserDTO userDTO) {
+    public String registerUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/registration?error";
+        }
         userService.saveUser(userDTO);
         return "redirect:/registration?success";
     }

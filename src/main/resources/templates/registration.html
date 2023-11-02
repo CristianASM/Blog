@@ -13,6 +13,9 @@
     <div th:if="${param.success}">
       <div class="alert alert-info">¡Registro creado con éxito!</div>
     </div>
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">El registro no cumple con los datos requeridos</div>
+    </div>
 
     <h1 class="text-center">Registro</h1>
     <form  th:action="@{/registration}" method="post" th:object="${user}">
@@ -25,7 +28,7 @@
         <input id="lastName" class="form-control" th:field="*{lastName}" required autofocus="autofocus" placeholder="Ingresa tu Apellido"/>
 
         <label class="control-label mt-2" for="userName">Nombre de usuario:</label>
-        <input id="userName" class="form-control" th:field="*{userName}" required autofocus="autofocus" placeholder="Usuario"/>
+        <input id="userName" class="form-control" th:field="*{userName}" required autofocus="autofocus" placeholder="Ingresa al menos 4 caracteres"/>
 
         <label class="control-label mt-2" for="email">Correo:</label>
         <input id="email" class="form-control" th:field="*{email}" required autofocus="autofocus" placeholder="example@mail.com"/>
