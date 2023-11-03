@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.security.Principal;
 
@@ -19,20 +20,23 @@ public class MainController {
         this.userService = userService;
         this.postService = postService;
     }
-
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
-    @GetMapping("/")
-    public String home(Model model, Principal principal){
+    @ModelAttribute
+    public void addUserNameToModel(Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             User user = userService.getUserByEmail(email);
             String userName = user.getUserName();
             model.addAttribute("userName", userName);
         }
+    }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+    @GetMapping("/")
+    public String home(Model model){
         model.addAttribute("posts", postService.getAllPost());
         return "index";
     }
+
 }

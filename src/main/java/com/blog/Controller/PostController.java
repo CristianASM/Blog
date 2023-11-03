@@ -22,16 +22,19 @@ public class PostController {
         this.postService = postService;
         this.userService = userService;
     }
-    @GetMapping("/newPost")
-    public String newPost(Model model, Principal principal){
-        Post newPost = new Post();
-        model.addAttribute("newPost", newPost);
+    @ModelAttribute
+    public void addUserNameToModel(Model model, Principal principal) {
         if (principal != null) {
             String email = principal.getName();
             User user = userService.getUserByEmail(email);
             String userName = user.getUserName();
             model.addAttribute("userName", userName);
         }
+    }
+    @GetMapping("/newPost")
+    public String newPost(Model model){
+        Post newPost = new Post();
+        model.addAttribute("newPost", newPost);
         return "post";
     }
     @PostMapping("/post")

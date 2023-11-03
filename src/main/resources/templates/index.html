@@ -50,9 +50,11 @@
         <div class="card mt-3" th:each="post : ${posts}">
             <h3 class="card__title" th:text="${post.title}">Title</h3>
             <div>
-                <span th:text="${#strings.substring(post.body, 0, 700)}"></span>
-                <span th:if="${#strings.length(post.body) > 150}">...</span>
+                <span th:if="${#strings.length(post.body) > 0}">
+                    <span th:text="${#strings.length(post.body) > 700 ? #strings.substring(post.body, 0, 700) + '...' : post.body}"></span>
+                </span>
             </div>
+
             <a th:if="${#strings.length(post.body) > 150}" th:href="@{posts/viewPost/{id}(id=${post.id})}">
                 <div class="card__arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
