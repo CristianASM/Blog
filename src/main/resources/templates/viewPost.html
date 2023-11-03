@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    <title>Publicacion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -44,34 +43,17 @@
         </div>
     </nav>
 </header>
-<article class="container mt-5">
-    <h2 class="text-center">Publicaciones</h2>
-    <div class="row">
-        <div class="card mt-3" th:each="post : ${posts}">
-            <h3 class="card__title" th:text="${post.title}">Title</h3>
-            <div>
-                <span th:text="${#strings.substring(post.body, 0, 700)}"></span>
-                <span th:if="${#strings.length(post.body) > 150}">...</span>
-            </div>
-            <a th:if="${#strings.length(post.body) > 150}" th:href="@{posts/viewPost/{id}(id=${post.id})}">
-                <div class="card__arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
-                        <path fill="#fff"
-                              d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z"></path>
-                    </svg>
-                </div>
-            </a>
-            <div class="card__date" th:text="${#temporals.format(post.createdDate, 'dd-MM-yyyy HH:mm')}">April 15,
-                2022
-            </div>
-        </div>
-    </div>
-
-    <!--<a th:href="@{/posts/newPost}" class="btn btn-primary mt-3">Crear post</a>-->
-</article>
+<div class="container mt-5">
+    <h1 class="text-center">Post</h1>
+    <h2 class="mt-5" th:text="${post.title}">Titulo</h2>
+    <p th:text="${post.body}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto aut maxime tempore vitae ipsum eveniet, eos
+        accusantium nostrum. Officiis quos temporibus accusamus id consequatur quod possimus, expedita minima odit ea?
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut excepturi fuga quod necessitatibus vitae expedita
+        dolore provident accusantium? Debitis ipsa doloribus nam porro, voluptatum tenetur consequuntur necessitatibus.
+        Iusto, corporis nam?</p>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
 </html>
-

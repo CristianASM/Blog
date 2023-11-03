@@ -7,10 +7,7 @@ import com.blog.Service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
@@ -42,5 +39,11 @@ public class PostController {
         post.setCreatedDate(LocalDateTime.now());
         postService.newPost(post);
         return "redirect:/";
+    }
+    @GetMapping("/viewPost/{id}")
+    public String viewPost(@PathVariable Long id, Model model){
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "viewPost";
     }
 }

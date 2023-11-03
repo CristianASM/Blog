@@ -19,7 +19,7 @@ public class Post {
     @Column(name = "titulo", length = 70)
     @NotBlank
     private String title;
-    @Column(name = "articulo")
+    @Column(name = "articulo", columnDefinition = "LONGTEXT")
     @NotBlank
     private String body;
     @JsonFormat(pattern = "dd/MM/yyyy")
