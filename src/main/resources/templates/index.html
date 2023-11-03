@@ -48,14 +48,13 @@
     <h2 class="text-center">Publicaciones</h2>
     <div class="row">
         <div class="card mt-3" th:each="post : ${posts}">
-            <h3 class="card__title" th:text="${post.title}">Title</h3>
-            <div>
-                <span th:if="${#strings.length(post.body) > 0}">
-                    <span th:text="${#strings.length(post.body) > 700 ? #strings.substring(post.body, 0, 700) + '...' : post.body}"></span>
-                </span>
-            </div>
-
-            <a th:if="${#strings.length(post.body) > 150}" th:href="@{posts/viewPost/{id}(id=${post.id})}">
+            <a class="none-decoration" th:href="@{posts/viewPost/{id}(id=${post.id})}">
+                <h3 class="card__title" th:text="${post.title}">Title</h3>
+                <div>
+                    <span th:if="${#strings.length(post.body) > 0}">
+                        <span th:text="${#strings.length(post.body) > 700 ? #strings.substring(post.body, 0, 700) + '...' : post.body}"></span>
+                    </span>
+                </div>
                 <div class="card__arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
                         <path fill="#fff"

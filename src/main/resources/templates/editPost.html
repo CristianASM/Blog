@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edición</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="mt-5">
+    <div class="container">
+        <h1 class="text-center">Editar Tarea</h1>
+        <div>
+            <form th:action="@{/posts/edit/{id}(id=${edit.id})}" method="post" th:object="${edit}">
+                <div class="form-group">
+                    <label class="control-label" for="title">Título:</label>
+                    <input id="title" class="form-control" th:field="*{title}" required autofocus="autofocus"
+                           placeholder="Encabezado"/>
+
+                    <label class="control-label mt-2" for="body">Texto:</label>
+                    <textarea name="body" id="body" class="form-control" th:field="*{body}" autofocus="autofocus"
+                              placeholder="Cuerpo" rows="20" required></textarea>
+
+                    <input type="submit" name="post-submit" id="post-submit"
+                           class="form-control btn btn-primary mt-4" value="Publicar"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
