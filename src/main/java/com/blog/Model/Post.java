@@ -24,4 +24,7 @@ public class Post {
     private String body;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime createdDate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

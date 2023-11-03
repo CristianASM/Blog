@@ -38,9 +38,14 @@ public class PostController {
         return "post";
     }
     @PostMapping("/post")
-    public String asd(@ModelAttribute("newPost") Post post){
-        post.setCreatedDate(LocalDateTime.now());
-        postService.newPost(post);
+    public String savePost(@ModelAttribute("newPost") Post post, Principal principal){
+        if (principal != null) {
+            String email = principal.getName();
+            User user = userService.getUserByEmail(email);
+            post.setUser(user);
+            post.setCreatedDate(LocalDateTime.now());
+            postService.newPost(post);
+        }
         return "redirect:/";
     }
     @GetMapping("/viewPost/{id}")
