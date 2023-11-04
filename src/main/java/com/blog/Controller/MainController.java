@@ -25,8 +25,10 @@ public class MainController {
         if (principal != null) {
             String email = principal.getName();
             User user = userService.getUserByEmail(email);
-            String userName = user.getUserName();
-            model.addAttribute("userName", userName);
+            if (user != null) {
+                String userName = user.getUserName();
+                model.addAttribute("userName", userName);
+            }
         }
     }
     @GetMapping("/login")
