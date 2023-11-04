@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/registration")
-public class UserRegistrationController {
+public class RegistrationController {
     private final UserServiceImpl userService;
     @Autowired
-    public UserRegistrationController(UserServiceImpl userService) {
+    public RegistrationController(UserServiceImpl userService) {
         this.userService = userService;
     }
     @ModelAttribute("user")

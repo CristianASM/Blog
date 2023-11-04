@@ -28,12 +28,12 @@
                         <a class="nav-link" th:href="@{/posts/newPost}">Crear</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Perfil</a>
+                        <a class="nav-link" th:href="@{/profile}">Perfil</a>
                     </li>
                 </ul>
                 <div class="in">
                     <div th:if="${#authorization.expression('isAuthenticated()')}" class="d-flex align-items-center">
-                        <p class="mb-0">Bienvenido, <span class="mr-1" th:text="${userName}"></span></p>
+                        <p class="mb-0"><span class="mr-1" th:text="${userName}"></span></p>
                         <a th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
                     </div>
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
