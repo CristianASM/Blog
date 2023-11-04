@@ -34,9 +34,9 @@ body{
     --border-radius: 0.75rem;
     --primary-color: #7257fa;
     --secondary-color: #3c3852;
-    width: 100vw;
+    width: 100%;
     font-family: "Arial";
-    padding: 1rem;
+    padding: 2rem;
     cursor: pointer;
     border-radius: var(--border-radius);
     background: #f1f1f3;

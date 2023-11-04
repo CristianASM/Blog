@@ -16,7 +16,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "titulo", length = 70)
+    @Column(name = "titulo", length = 200)
     @NotBlank
     private String title;
     @Column(name = "articulo", columnDefinition = "LONGTEXT")

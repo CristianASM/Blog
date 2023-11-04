@@ -4,6 +4,8 @@ import com.blog.Model.Post;
 import com.blog.Model.User;
 import com.blog.Service.Impl.PostServiceImpl;
 import com.blog.Service.Impl.UserServiceImpl;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +48,8 @@ public class PostController {
             User user = userService.getUserByEmail(email);
             post.setUser(user);
             post.setCreatedDate(LocalDateTime.now());
+            String sanitizedBody = sanitizeHTML(post.getBody());
+            post.setBody(sanitizedBody);
             postService.newPost(post);
         }
         return "redirect:/";
@@ -75,5 +79,8 @@ public class PostController {
     public String deletePost(@PathVariable Long id){
         postService.deletePost(id);
         return "redirect:/";
+    }
+    private String sanitizeHTML(String inputHTML) {
+        return Jsoup.clean(inputHTML, Whitelist.basic());
     }
 }
