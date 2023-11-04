@@ -27,7 +27,7 @@
                         <a class="nav-link" th:href="@{/posts/newPost}">Crear</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}">Categorias</a>
+                        <a class="nav-link" th:href="@{/}">Perfil</a>
                     </li>
                 </ul>
                 <div class="in">
@@ -52,7 +52,7 @@
                 <h3 class="card__title" th:text="${post.title}">Title</h3>
                 <div>
                     <span th:if="${#strings.length(post.body) > 0}">
-                        <span th:text="${#strings.length(post.body) > 700 ? #strings.substring(post.body, 0, 700) + '...' : post.body}"></span>
+                        <span th:utext="${#strings.length(post.body) > 700 ? #strings.substring(post.body, 0, 700) + ' ...' : post.body}"></span>
                     </span>
                 </div>
                 <div class="card__arrow">
