@@ -93,3 +93,20 @@ body{
      text-decoration: none;
      color: black;
 }
+.nav-item .active{
+    background-color: rgb(112, 22, 196);
+    color: #ffffff !important;
+}
+
+@media(max-width:767px){
+    .nav-item .active{
+            width: 90px;
+            text-align: center;
+    }
+    .in{
+    margin-top: 15px;
+    }
+}
+.modal{
+    color: black;
+}

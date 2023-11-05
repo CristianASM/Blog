@@ -25,7 +25,7 @@
                         <a class="nav-link" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-item mr-1">
-                        <a class="nav-link" th:href="@{/posts/newPost}">Crear</a>
+                        <a class="nav-link active rounded-4" th:href="@{/posts/newPost}">Crear</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/profile}">Perfil</a>
@@ -65,7 +65,7 @@
   var editor = new FroalaEditor('#body', {
     toolbarButtons: ['bold', 'italic', 'underline', 'align', 'format'],
     height: 300,
-    placeholderText: 'Escribe tu contenido aquí...'
+    placeholderText: 'Escribe tu contenido aquí...',
   });
 </script>
 

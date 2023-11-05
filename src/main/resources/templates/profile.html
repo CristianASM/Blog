@@ -26,7 +26,7 @@
                         <a class="nav-link" th:href="@{/posts/newPost}">Crear</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/profile}">Perfil</a>
+                        <a class="nav-link active rounded-4" th:href="@{/profile}">Perfil</a>
                     </li>
                 </ul>
                 <div class="in">
@@ -45,7 +45,7 @@
 </header>
 <article class="container mt-5">
     <h2 class="text-center">Tus publicaciones</h2>
-    <div class="row">
+    <div class="d-flex flex-column">
         <div class="card-home mt-3" th:each="post : ${userPost}">
             <a class="none-decoration" th:href="@{posts/viewPost/{id}(id=${post.id})}">
                 <h3 class="card__title" th:text="${post.title}">Título</h3>
