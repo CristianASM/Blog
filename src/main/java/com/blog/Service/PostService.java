@@ -1,6 +1,7 @@
 package com.blog.Service;
 
 import com.blog.Model.Post;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

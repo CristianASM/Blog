@@ -22,9 +22,10 @@ public class Post {
     @Column(name = "articulo", columnDefinition = "LONGTEXT")
     @NotBlank
     private String body;
+    @Column(name = "fecha_creacion")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime createdDate;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_usuario")
     private User user;
 }

@@ -6,7 +6,9 @@ import com.blog.Repository.PostRepository;
 import com.blog.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 @Service
 public class PostServiceImpl implements PostService {
@@ -22,7 +24,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post newPost(Post post) {
+    public Post newPost(Post post){
         return postRepository.save(post);
     }
 
