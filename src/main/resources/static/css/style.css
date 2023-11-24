@@ -106,7 +106,19 @@ body{
     .in{
     margin-top: 15px;
     }
+    .img-cards{
+            width: auto;
+    }
 }
 .modal{
     color: black;
+}
+@media(min-width:768px){
+    .d-card{
+        display: flex;
+        justify-content: space-between;
+    }
+    .img-cards{
+        width: 450px;
+    }
 }

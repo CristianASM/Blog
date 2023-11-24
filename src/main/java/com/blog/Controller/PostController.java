@@ -4,15 +4,22 @@ import com.blog.Model.Post;
 import com.blog.Model.User;
 import com.blog.Service.Impl.PostServiceImpl;
 import com.blog.Service.Impl.UserServiceImpl;
+import jakarta.validation.Valid;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/posts")
@@ -42,7 +49,8 @@ public class PostController {
         return "post";
     }
     @PostMapping("/post")
-    public String savePost(@ModelAttribute("newPost") Post post, Principal principal){
+    public String savePost(@Valid @ModelAttribute("newPost") Post post, Principal principal,
+                           @RequestParam("file")MultipartFile file){
         if (principal != null) {
             String email = principal.getName();
             User user = userService.getUserByEmail(email);
@@ -50,6 +58,17 @@ public class PostController {
             post.setCreatedDate(LocalDateTime.now());
             String sanitizedBody = sanitizeHTML(post.getBody());
             post.setBody(sanitizedBody);
+            if (!file.isEmpty()) {
+                try {
+                    String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+                    String relativePath = "/img/" + fileName;
+                    Path absolutePath = Paths.get("src/main/resources/static" + relativePath);
+                    Files.write(absolutePath, file.getBytes());
+                    post.setImage(relativePath);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             postService.newPost(post);
         }
         return "redirect:/";
@@ -67,7 +86,7 @@ public class PostController {
         return "editPost";
     }
     @PostMapping("/edit/{id}")
-    public String saveEdit(@PathVariable Long id, @ModelAttribute("edit") Post post){
+    public String saveEdit(@Valid @PathVariable Long id, @ModelAttribute("edit") Post post){
         Post postToSave = postService.getPost(id);
         postToSave.setTitle(post.getTitle());
         postToSave.setBody(post.getBody());

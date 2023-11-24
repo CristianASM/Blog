@@ -48,7 +48,7 @@
     </nav>
 </header>
 <article class="container mt-5">
-    <form method="post" th:object="${newPost}" th:action="@{/posts/post}">
+    <form method="post" th:object="${newPost}" th:action="@{/posts/post}" enctype="multipart/form-data"q>
         <div class="form-group">
             <label class="control-label" for="title">Título:</label>
             <input id="title" name="title" class="form-control" th:field="*{title}" autofocus="autofocus"
@@ -57,6 +57,8 @@
             <label class="control-label mt-2" for="body">Texto:</label>
             <textarea name="body" id="body" class="form-control" th:field="*{body}" autofocus="autofocus"
                       placeholder="Cuerpo" rows="15" required></textarea>
+            <label class="control-label mt-2" for="file">Imagen:</label>
+            <input type="file" name="file" id="file" class="form-control" accept="image/*" required/>
 
             <input type="submit" name="post-submit" id="post-submit"
                    class="form-control btn btn-primary mt-4" value="Publicar"/>

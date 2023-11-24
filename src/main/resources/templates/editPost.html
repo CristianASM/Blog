@@ -59,6 +59,9 @@
                     <textarea name="body" id="body" class="form-control" th:field="*{body}" autofocus="autofocus"
                               placeholder="Cuerpo" required></textarea>
 
+                    <label class="control-label mt-2" for="file">Imagen:</label>
+                    <input type="file" name="file" id="file" class="form-control" accept="image/*"/>
+
                     <input type="submit" name="post-submit" id="post-submit"
                            class="form-control btn btn-primary mt-4" value="Publicar"/>
                 </div>

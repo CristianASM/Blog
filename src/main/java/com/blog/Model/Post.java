@@ -22,6 +22,8 @@ public class Post {
     @Column(name = "articulo", columnDefinition = "LONGTEXT")
     @NotBlank
     private String body;
+    @Column(name = "imagen")
+    private String image;
     @Column(name = "fecha_creacion")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime createdDate;

@@ -94,6 +94,10 @@
     </div>
     <div class="card mt-5 p-5 card-view-post mb-5 rounded-5">
         <em>Publicado por <span th:text="${post.user.userName}"></span></em>
+        <div class="w-100 d-flex justify-content-center">
+            <img th:src="${post.image}" th:alt="${post.image}" style="width:700px"/>
+        </div>
+
         <h2 class="mt-4" th:text="${post.title}">Título</h2>
         <p class="mt-3" th:utext="${post.body}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
             aut maxime tempore vitae ipsum eveniet, eos
