@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProyectoBlogPersonalApplication {
+public class ProyectoBlogApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProyectoBlogPersonalApplication.class, args);
+		SpringApplication.run(ProyectoBlogApplication.class, args);
 	}
 
 }

@@ -86,10 +86,22 @@ public class PostController {
         return "editPost";
     }
     @PostMapping("/edit/{id}")
-    public String saveEdit(@Valid @PathVariable Long id, @ModelAttribute("edit") Post post){
+    public String saveEdit(@Valid @PathVariable Long id, @ModelAttribute("edit") Post post,
+                           @RequestParam("file") MultipartFile file){
         Post postToSave = postService.getPost(id);
         postToSave.setTitle(post.getTitle());
         postToSave.setBody(post.getBody());
+        if (!file.isEmpty()) {
+            try {
+                String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+                String relativePath = "/img/" + fileName;
+                Path absolutePath = Paths.get("src/main/resources/static" + relativePath);
+                Files.write(absolutePath, file.getBytes());
+                postToSave.setImage(relativePath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         postToSave.setCreatedDate(LocalDateTime.now());
         postService.updatePost(id, postToSave);
         return "redirect:/";
